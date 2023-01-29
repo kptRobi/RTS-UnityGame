@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CameraControl : MonoBehaviour {
 
+    //zaznaczone jednostki
+    List<Unit> selectedUnits = new List<Unit>();
+
     //Obsługa kamery
     //przesuwanie i zoom
     public float cameraSpeed, zoomSpeed, groundHeight;
@@ -104,12 +107,16 @@ public class CameraControl : MonoBehaviour {
             boxRect = AbsRect(selectionRect);
             selectionBox.anchoredPosition = boxRect.position;
             selectionBox.sizeDelta = boxRect.size;
-
+            UpdateSelecting();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            GiveCommands();
         }
 
     }
 
-    //przekształcenie kwadratu zaznaczenia
+    //przekształcenie prostokątu zaznaczenia
     Rect AbsRect(Rect rect)
     {
         if(rect.width < 0)
@@ -123,5 +130,63 @@ public class CameraControl : MonoBehaviour {
             rect.height *= -1;
         }
         return rect;
+    }
+
+    //zaznaczanie jednostek
+    void UpdateSelecting()
+    {
+        selectedUnits.Clear();
+        foreach (Unit unit in Unit.SelectableUnits)
+        {
+            if (!unit) continue;
+            var pos = unit.transform.position;
+            var posScreen = camera.WorldToScreenPoint(pos);
+            bool inRect = IsPointInRect(boxRect, posScreen);
+            (unit as ISelectable).setSelected(inRect);
+            if (inRect)
+            {
+                selectedUnits.Add(unit);
+            }
+        }
+    }
+
+    bool IsPointInRect(Rect rect, Vector2 point)
+    {
+        return point.x >= rect.position.x && point.x <= (rect.position.x + rect.size.x) &&
+            point.y >= rect.position.y && point.y <= (rect.position.y + rect.size.y);
+    }
+
+    Ray ray;
+    RaycastHit rayHit;
+    [SerializeField]
+    LayerMask commandLayerMask = 1;
+
+    //dawanie poleceń
+    void GiveCommands()
+    {
+        ray = camera.ViewportPointToRay(mousePosScreen);
+        if (Physics.Raycast(ray, out rayHit, 1000, commandLayerMask)){
+            object commandData = null;
+            if (rayHit.collider is TerrainCollider)
+            {
+                //Debug.Log("Terrain: " + rayHit.point.ToString());
+                commandData = rayHit.point;
+            }
+            else
+            {
+                Debug.Log(rayHit.collider);
+                commandData = rayHit.collider.gameObject.GetComponent<Unit>();
+            }
+            Debug.Log(commandData);
+            GiveCommands(commandData);
+        }
+    }
+
+    void GiveCommands(object dataCommand)
+    {
+        foreach(Unit unit in selectedUnits)
+        {
+            unit.SendMessage("Command", dataCommand, SendMessageOptions.DontRequireReceiver);
+        }
     }
 }

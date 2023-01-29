@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136642753}
   - component: {fileID: 136642752}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 148935732}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 129.2, y: 90.4, z: 116.4}
+  m_LocalPosition: {x: 226.5, y: 90.4, z: 274.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1057665381}
@@ -286,6 +286,9 @@ MonoBehaviour:
   cameraRotationMinMax: {x: 25, y: 45}
   zoomLerp: 0.22
   cursorTreshold: 0.04
+  commandLayerMask:
+    serializedVersion: 2
+    m_Bits: 2816
 --- !u!1 &404584222
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +367,7 @@ GameObject:
   - component: {fileID: 458045071}
   - component: {fileID: 458045070}
   - component: {fileID: 458045069}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569530758}
   - component: {fileID: 569530759}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Directional Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,6 +495,56 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &808621613
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 225.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 325.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.9124757
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.409131
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976829330876320, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_Name
+      value: Soldier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 131.70001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &895867511
 Prefab:
   m_ObjectHideFlags: 0
@@ -501,31 +554,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 245.1
+      value: 219.08
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 53.5
+      value: 50.85
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 214.7
+      value: 326.63
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9124757
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.409131
       objectReference: {fileID: 0}
     - target: {fileID: 4688121577208948, guid: a80469b7ef878014b886b65179a9a48c, type: 2}
       propertyPath: m_RootOrder
@@ -703,7 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662589973}
   - component: {fileID: 1662589974}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WindZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
