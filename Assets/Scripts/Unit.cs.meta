@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: c8425bf98187ebd4d9c70f9000b352cd
-timeCreated: 1675007849
+timeCreated: 1675023885
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - target: {instanceID: 0}
+  - hpBarPrefab: {fileID: 1030381140729524, guid: 5b39e2fbde0afb64ea2d7fe393f3fe83,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

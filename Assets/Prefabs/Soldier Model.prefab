@@ -674,7 +674,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976829330876320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 228.07, y: 53.478546, z: 200.63}
+  m_LocalPosition: {x: 245.1, y: 53.5, z: 214.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4309887918427168}
@@ -802,7 +802,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1691913953366320}
-  m_LocalRotation: {x: -0.57501507, y: 0.41631377, z: 0.51599705, w: 0.47936153}
+  m_LocalRotation: {x: -0.5750151, y: 0.4163138, z: 0.5159971, w: 0.47936156}
   m_LocalPosition: {x: 0.053558357, y: -0.020294191, z: -0.2048111}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Children:
@@ -855,6 +855,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  hp: 0
+  hpMax: 100
+  hpBarPrefab: {fileID: 1030381140729524, guid: 5b39e2fbde0afb64ea2d7fe393f3fe83,
+    type: 2}
 --- !u!137 &137161082712713624
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

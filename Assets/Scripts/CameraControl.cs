@@ -4,24 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CameraControl : MonoBehaviour {
+
+    //Obsługa kamery
+    //przesuwanie i zoom
     public float cameraSpeed, zoomSpeed, groundHeight;
     public Vector2 cameraHeightMinMax;
     public Vector2 cameraRotationMinMax;
+    new Camera camera;
+    Vector2 mousePos, mousePosScreen, keyboardInput, mouseScroll;
+    bool isCursorInGameScreen;
+
+    //parametry
     [Range(0, 1)]
     public float zoomLerp = .1f;
     [Range(0, 0.2f)]
     public float cursorTreshold;
 
-
+    //zaznaczanie jednostek
     RectTransform selectionBox;
-    new Camera camera;
-    Vector2 mousePos, mousePosScreen, keyboardInput, mouseScroll;
-    bool isCursorInGameScreen;
+    Rect selectionRect, boxRect;
 
     private void Awake()
     {
         selectionBox = GetComponentInChildren<Image>(true).transform as RectTransform;
         camera = GetComponent<Camera>();
+        selectionBox.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -42,6 +49,7 @@ public class CameraControl : MonoBehaviour {
 
         Vector2 movementDirection = keyboardInput;
 
+        //przesuwanie po krawedzi ekranu
         if (isCursorInGameScreen)
         {
             //lewo
@@ -53,7 +61,6 @@ public class CameraControl : MonoBehaviour {
             //dół
             if (mousePosScreen.y > 1 - cursorTreshold) movementDirection.y += 1 - (1 - mousePosScreen.y) / (cursorTreshold);
         }
-
         var deltaPosition = new Vector3(movementDirection.x, 0, movementDirection.y);
         deltaPosition *= cameraSpeed * Time.deltaTime;
         transform.position += deltaPosition;
@@ -66,10 +73,12 @@ public class CameraControl : MonoBehaviour {
         float zoomDelta = mouseScroll.y * zoomSpeed * Time.deltaTime;
         zoomLerp = Mathf.Clamp01(zoomLerp + zoomDelta);
 
+        //przybliżanie
         var position = transform.position;
         position.y = Mathf.Lerp(cameraHeightMinMax.y, cameraHeightMinMax.x, zoomLerp) + groundHeight;
         transform.position = position;
 
+        //rotowanie wokół X
         var rotation = transform.localEulerAngles;
         rotation.x = Mathf.Lerp(cameraRotationMinMax.y, cameraRotationMinMax.x, zoomLerp);
         transform.localEulerAngles = rotation;
@@ -78,7 +87,41 @@ public class CameraControl : MonoBehaviour {
 
     void UpdateClicks()
     {
-            //selectionBox.anchoredPosition = mousePos;
+        //zaznaczanie
+        if (Input.GetMouseButtonDown(0))
+        {
+            selectionBox.gameObject.SetActive(true);
+            selectionRect.position = mousePos;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            selectionBox.gameObject.SetActive(false);
 
+        }
+        if (Input.GetMouseButton(0))
+        {
+            selectionRect.size = mousePos - selectionRect.position;
+            boxRect = AbsRect(selectionRect);
+            selectionBox.anchoredPosition = boxRect.position;
+            selectionBox.sizeDelta = boxRect.size;
+
+        }
+
+    }
+
+    //przekształcenie kwadratu zaznaczenia
+    Rect AbsRect(Rect rect)
+    {
+        if(rect.width < 0)
+        {
+            rect.x += rect.width;
+            rect.width *= -1;
+        }
+        if (rect.height < 0)
+        {
+            rect.y += rect.height;
+            rect.height *= -1;
+        }
+        return rect;
     }
 }
