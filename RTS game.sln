@@ -1,12 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTS game.Plugins", "RTS game.Plugins.csproj", "{FC348B40-B966-E3D3-DF2B-25B57D9E4A5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTS game", "RTS game.csproj", "{D09A55E1-ABE7-3AD3-97A0-F65C7118B357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTS game.Editor", "RTS game.Editor.csproj", "{22A92BA7-7472-9F98-2DF6-14E78BC39BA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC348B40-B966-E3D3-DF2B-25B57D9E4A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC348B40-B966-E3D3-DF2B-25B57D9E4A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC348B40-B966-E3D3-DF2B-25B57D9E4A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC348B40-B966-E3D3-DF2B-25B57D9E4A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D09A55E1-ABE7-3AD3-97A0-F65C7118B357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D09A55E1-ABE7-3AD3-97A0-F65C7118B357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D09A55E1-ABE7-3AD3-97A0-F65C7118B357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D09A55E1-ABE7-3AD3-97A0-F65C7118B357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22A92BA7-7472-9F98-2DF6-14E78BC39BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A92BA7-7472-9F98-2DF6-14E78BC39BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A92BA7-7472-9F98-2DF6-14E78BC39BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A92BA7-7472-9F98-2DF6-14E78BC39BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
