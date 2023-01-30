@@ -16,24 +16,29 @@ public class Unit : MonoBehaviour {
     public static List<ISelectable>SelectableUnits { get { return seletableUnits; } }
     static List<ISelectable> seletableUnits = new List<ISelectable>();
 
-
-    public Transform target;
-    protected NavMeshAgent nav;
-    Animator animator;
-    protected Task task = Task.idle;
-    [SerializeField]
-    float stoppingDistance = 1;
-
-    //żyćko
-    [SerializeField]
-    float hp, hpMax = 100;
-    public bool IsAlive { get { return hp > 0; } }
-    public float HealthPercent { get { return hp / hpMax; } }
+    [Header("Unit")]
     [SerializeField]
     GameObject hpBarPrefab;
-    protected HealthBar healthBar;
+    [SerializeField]
+    float hp, hpMax = 100;
+    [SerializeField]
+    protected float attackDistance = 1, 
+         attackCooldown = 1,
+         attackDamage = 0,
+         stoppingDistance = 1;
 
-    private void Awake()
+    protected Transform target;
+    protected HealthBar healthBar;
+    protected Task task = Task.idle;
+    protected NavMeshAgent nav;
+
+    public bool IsAlive { get { return hp > 0; } }
+    public float HealthPercent { get { return hp / hpMax; } }
+
+    float attackTimer;
+    Animator animator;
+
+    protected virtual void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -79,14 +84,15 @@ public class Unit : MonoBehaviour {
                 default:
                     break;
             }
-            Animate();
         }
+        Animate();
     }
 
     protected virtual void Idling() {
         nav.velocity = Vector3.zero;
     }
-    protected virtual void Moving() {
+    protected virtual void Moving()
+    {
         float distance = Vector3.Magnitude(nav.destination - transform.position);
         if (distance <= stoppingDistance)
         {
@@ -104,10 +110,48 @@ public class Unit : MonoBehaviour {
             task = Task.idle;
         }
     }
-    protected virtual void Chasing() { }
+    protected virtual void Chasing()
+    {
+        if (target)
+        {
+            nav.SetDestination(target.position);
+            float distance = Vector3.Magnitude(nav.destination - transform.position);
+            if (distance <= attackDistance)
+            {
+                this.task = Task.attack;
+            }
+
+        }
+        else
+        {
+            task = Task.idle;
+        }
+
+    }
     protected virtual void Attacking()
     {
+        if (target)
+        {
         nav.velocity = Vector3.zero;
+            transform.LookAt(target);
+            float distance = Vector3.Magnitude(nav.destination - transform.position);
+            if (distance <= attackDistance)
+            {
+                if ((attackTimer -= Time.deltaTime) <= 0)
+                {
+                    Attack();
+                }
+            }
+            else
+            {
+                this.task = Task.chase;
+
+            }
+        }
+        else
+        {
+            task = Task.idle;
+        }
     }
 
     //animacja
@@ -118,6 +162,30 @@ public class Unit : MonoBehaviour {
         float speed = speedVector.magnitude;
         animator.SetFloat(ANIMATOR_SPEED, speed);
         animator.SetBool(ANIMATOR_ALIVE, IsAlive);
+    }
+    public virtual void Attack() {
+        animator.SetTrigger(ANIMATOR_ATTACK);
+        attackTimer = attackCooldown;
+
+    }
+    public virtual void DealDamage() {
+        if (target)
+        {
+            Unit unit = target.GetComponent<Unit>();
+            if(unit && unit.IsAlive)
+            {
+                unit.hp -= attackDamage;
+            }
+            else
+            {
+                target = null;
+            }
+        }
+    }
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 
 }

@@ -169,15 +169,12 @@ public class CameraControl : MonoBehaviour {
             object commandData = null;
             if (rayHit.collider is TerrainCollider)
             {
-                //Debug.Log("Terrain: " + rayHit.point.ToString());
                 commandData = rayHit.point;
             }
             else
             {
-                Debug.Log(rayHit.collider);
                 commandData = rayHit.collider.gameObject.GetComponent<Unit>();
             }
-            Debug.Log(commandData);
             GiveCommands(commandData);
         }
     }

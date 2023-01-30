@@ -444,6 +444,9 @@ GameObject:
   m_Component:
   - component: {fileID: 409254}
   - component: {fileID: 9562442}
+  - component: {fileID: 65258656751672458}
+  - component: {fileID: 114700972199685164}
+  - component: {fileID: 195040503425952770}
   m_Layer: 9
   m_Name: Dragon Model
   m_TagString: Untagged
@@ -694,7 +697,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 213.06047, y: 50.250526, z: 317.95956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460602}
@@ -1360,3 +1363,55 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 177538}
   m_IsPrefabParent: 1
+--- !u!65 &65258656751672458
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 6}
+  m_Center: {x: 0, y: 2, z: 0.5}
+--- !u!114 &114700972199685164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380d91d52c877d1458ab9ab29883cfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBarPrefab: {fileID: 1030381140729524, guid: fdaedc104a5b2fc459cb8a9a2a216657,
+    type: 2}
+  hp: 0
+  hpMax: 250
+  attackDistance: 1
+  attackCooldown: 1
+  attackDamage: 0
+  stoppingDistance: 1
+--- !u!195 &195040503425952770
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177538}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
