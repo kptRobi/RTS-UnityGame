@@ -59,16 +59,11 @@ public class Soldier : Unit, ISelectable {
         Vector3 start = muzzleEffect.transform.position;
         Vector3 direction = transform.forward;
 
-
-
         RaycastHit hit;
         if(Physics.Raycast(start, direction, out hit, attackDistance, shootingLayerMask))
         {
-            Debug.Log("DUPA1");
             StartShootEffect(start, hit.point, true);
-            Debug.Log("DUPA2");
             var unit = hit.collider.gameObject.GetComponent<Unit>();
-            Debug.Log("DUPA3" + unit);
             return unit;
         }
         StartShootEffect(start, start + direction * attackDistance, false);
@@ -79,9 +74,7 @@ public class Soldier : Unit, ISelectable {
     {
         if (hitSomething)
         {
-            Debug.Log("DUPA2.5");
             impactEffect.transform.position = lineEnd;
-            Debug.Log("DUPA2.6");
             impactEffect.Play();
         }
         lineEffect.SetPositions(new Vector3[] { lineStart, lineEnd });
