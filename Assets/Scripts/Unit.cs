@@ -206,12 +206,14 @@ public class Unit : MonoBehaviour {
         if (!IsAlive)
         {
             healthBar.gameObject.SetActive(false);
-            //enabled = false;
+            enabled = false;
             nav.enabled = false;
             foreach (var collider in GetComponents<Collider>())
             {
                 collider.enabled = false;
             }
+            if (this is ISelectable) seletableUnits.Remove(this as ISelectable);
+            Animate();
         }
     }
 

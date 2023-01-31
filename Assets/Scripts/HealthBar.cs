@@ -9,12 +9,14 @@ public class HealthBar : MonoBehaviour {
     const string HP_CANVAS = "HP Canvas";
     Slider slider;
     Unit unit;
+    Transform parent;
     [SerializeField]
     Vector3 offset;
     Transform cameraTransform;
     
 	void Awake () {
         slider = GetComponent<Slider>();
+        parent = transform.parent;
         unit = GetComponentInParent<Unit>();
 
         //zmień parenta na canvas (chyba)
@@ -28,17 +30,17 @@ public class HealthBar : MonoBehaviour {
     private void Update()
     {
         //śmierć
-        if (!unit)
+        if (!parent)
         {
             Destroy(this.gameObject);
             return;
         }
 
         //odczyt życia
-        slider.value = unit.HealthPercent;
+        if(unit) slider.value = unit.HealthPercent;
 
         //pozycja nad jednostką
-        transform.position = unit.transform.position + offset;
+        transform.position = parent.transform.position + offset;
         transform.LookAt(cameraTransform);
         var rotation = transform.localEulerAngles;
         rotation.y = 180;

@@ -143,6 +143,7 @@ public class Dragon : Unit {
         if (!target)
         {
             task = Task.move;
+            if(this.IsAlive)
             nav.SetDestination(damageDealerPosition);
         }
         //dodane sinceLastHitAnim
