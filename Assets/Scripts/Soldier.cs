@@ -22,6 +22,7 @@ public class Soldier : Unit, ISelectable {
         lightEffect = muzzleEffect.GetComponent<Light>();
         impactEffect.transform.SetParent(null);
         EndShootEffect();
+        GameController.SoldierList.Add(this);
     }
 
     public void setSelected(bool selected)
@@ -31,6 +32,7 @@ public class Soldier : Unit, ISelectable {
 
     void Command(Vector3 destination)
     {
+        if (!IsAlive) return;
         nav.SetDestination(destination);
         task = Task.move;
         target = null;
@@ -38,11 +40,13 @@ public class Soldier : Unit, ISelectable {
 
     void Command(Soldier SoldierToFollow)
     {
+        if (!IsAlive) return;
         target = SoldierToFollow.transform;
         task = Task.follow;
     }
     void Command(Dragon dragonToKill)
     {
+        if (!IsAlive) return;
         target = dragonToKill.transform;
         task = Task.chase;
     }

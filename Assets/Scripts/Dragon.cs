@@ -51,6 +51,7 @@ public class Dragon : Unit {
         base.Awake();
         normalSpeed = nav.speed;
         startPoint = transform.position;
+        GameController.DragonList.Add(this);
     }
 
     protected override void OnTriggerEnter(Collider other)

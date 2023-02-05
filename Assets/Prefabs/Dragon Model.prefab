@@ -1395,6 +1395,7 @@ MonoBehaviour:
   attackCooldown: 2
   attackDamage: 24
   stoppingDistance: 1
+  reward: 250
   idlingCooldown: 2
   patrolRadius: 10
   chasingSpeed: 6

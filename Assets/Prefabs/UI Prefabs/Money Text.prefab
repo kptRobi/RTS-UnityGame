@@ -59,7 +59,7 @@ MonoBehaviour:
   money: 0
   startOffset: {x: 0, y: 2, z: 0}
   endOffset: {x: 0, y: 20, z: 0}
-  duration: 5
+  duration: 2
   startColor: {r: 0.85294116, g: 0.939148, b: 1, a: 1}
   endColor: {r: 0.375, g: 0.53448266, b: 1, a: 0}
 --- !u!114 &114728482179236224
