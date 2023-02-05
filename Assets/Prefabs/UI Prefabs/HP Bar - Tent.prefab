@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 224521148324833904}
   - component: {fileID: 114820184522071372}
   - component: {fileID: 114520978803880742}
+  - component: {fileID: 114279253258530734}
   m_Layer: 0
-  m_Name: HP Bar - Dragon
+  m_Name: HP Bar - Tent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,6 +105,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114279253258530734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030381140729524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b21281a14843304dad5374af2436ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114377142667675864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.37931037, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -142,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409bf01fb6230334e9e3771c80f206f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 4, z: 0}
+  offset: {x: 0, y: 10, z: 0}
 --- !u!114 &114820184522071372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +197,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -239,7 +251,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -132.4, y: -153.75}
-  m_SizeDelta: {x: 160, y: 15}
+  m_SizeDelta: {x: 80, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224797656846135886
 RectTransform:

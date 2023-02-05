@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Dragon : Unit {
 
+    [SerializeField]
+    uint reward = 150;
+
     List<Soldier> seenSoldiers = new List<Soldier>();
     Soldier ClosestSoldier
     {
@@ -140,14 +143,14 @@ public class Dragon : Unit {
     public override void ReciveDamage(float damage, Vector3 damageDealerPosition)
     {
         base.ReciveDamage(damage, damageDealerPosition);
-        if (!target)
+        if (!target && IsAlive)
         {
             task = Task.move;
             if(this.IsAlive)
             nav.SetDestination(damageDealerPosition);
         }
         //dodane sinceLastHitAnim
-        if(HealthPercent > 0.5f && sinceLastHitAnim >= 2)
+        if(HealthPercent > 0.5f && sinceLastHitAnim >= 5)
         {
             animator.SetTrigger("Get Hit");
             nav.velocity = Vector3.zero;
@@ -156,6 +159,14 @@ public class Dragon : Unit {
         else
         {
             sinceLastHitAnim++;
+        }
+        if (!IsAlive)
+        {
+            if (Money.TryAddMoney(reward) && reward > 0)
+            {
+                MoneyEarner.ShowMoneyText(transform.position, (int)reward);
+                reward = 0;
+            }
         }
     }
 

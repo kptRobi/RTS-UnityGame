@@ -6,13 +6,12 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour {
 
-    const string HP_CANVAS = "HP Canvas";
+    const string WORLD_CANVAS = "World Canvas";
     Slider slider;
     Unit unit;
     Transform parent;
     [SerializeField]
     Vector3 offset;
-    Transform cameraTransform;
     
 	void Awake () {
         slider = GetComponent<Slider>();
@@ -20,11 +19,9 @@ public class HealthBar : MonoBehaviour {
         unit = GetComponentInParent<Unit>();
 
         //zmień parenta na canvas (chyba)
-        var canvas = GameObject.FindGameObjectWithTag(HP_CANVAS);
+        var canvas = GameObject.FindGameObjectWithTag(WORLD_CANVAS);
         if (canvas) transform.SetParent(canvas.transform);
 
-        //patrz sliderem w kamere
-        cameraTransform = Camera.main.transform;
 	}
 
     private void Update()
@@ -38,12 +35,8 @@ public class HealthBar : MonoBehaviour {
 
         //odczyt życia
         if(unit) slider.value = unit.HealthPercent;
-
-        //pozycja nad jednostką
         transform.position = parent.transform.position + offset;
-        transform.LookAt(cameraTransform);
-        var rotation = transform.localEulerAngles;
-        rotation.y = 180;
-        transform.localEulerAngles = rotation;
+
+
     }
 }
