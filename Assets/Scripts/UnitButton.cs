@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UnitButton : MonoBehaviour {
 
     [SerializeField]
-    GameObject spawnPrefab;
+    protected GameObject spawnPrefab;
 
     Button button;
     Text text;
@@ -27,13 +27,13 @@ public class UnitButton : MonoBehaviour {
         Buyable buyable;
         if (spawnPrefab && (buyable = spawnPrefab.GetComponent<Buyable>()))
         {
-            text.text = buyable.cost + "W€";
+            text.text = buyable.cost + "K€";
             button.interactable = Money.HaveEnoughMoney(buyable.cost);
         }
     }
 
 
-    public void SpawnUnit()
+    public virtual void SpawnUnit()
     {
         CameraControl.SpawnUnits(spawnPrefab);
     }

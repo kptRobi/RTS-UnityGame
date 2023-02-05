@@ -25,7 +25,7 @@ public class Money : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        text.text = amount + " WITcoin";
+        text.text = amount + " Kubica€oins";
 		
 	}
 

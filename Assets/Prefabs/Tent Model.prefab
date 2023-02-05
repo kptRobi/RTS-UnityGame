@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da1cadbc83bd844d95369d716b757e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  cost: 1000
+  icon: {fileID: 21300000, guid: 135e96ec3a1ce0f449845c15d8e477ef, type: 3}
+  cost: 600
 --- !u!136 &136681422430669758
 CapsuleCollider:
   m_ObjectHideFlags: 1
