@@ -51,7 +51,13 @@ public class Dragon : Unit {
         base.Awake();
         normalSpeed = nav.speed;
         startPoint = transform.position;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         GameController.DragonList.Add(this);
+
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -151,7 +157,7 @@ public class Dragon : Unit {
             nav.SetDestination(damageDealerPosition);
         }
         //dodane sinceLastHitAnim
-        if(HealthPercent > 0.5f && sinceLastHitAnim >= 5)
+        if(HealthPercent > 0.5f && sinceLastHitAnim >= 6)
         {
             animator.SetTrigger("Get Hit");
             nav.velocity = Vector3.zero;

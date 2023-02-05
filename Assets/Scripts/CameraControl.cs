@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public class CameraControl : MonoBehaviour {
 
     static CameraControl cameraControl;
+    public float terrainHeight;
+
+    [SerializeField]
+    float MaxLeft =70, 
+        MaxUp = 400, 
+        MaxRight = 400, 
+        MaxDown = 70;
 
     //zaznaczone jednostki
     List<ISelectable> selectedUnits = new List<ISelectable>();
@@ -79,12 +86,34 @@ public class CameraControl : MonoBehaviour {
         }
         var deltaPosition = new Vector3(movementDirection.x, 0, movementDirection.y);
         deltaPosition *= cameraSpeed * Time.deltaTime;
-        transform.position += deltaPosition;
+        var deltaConstrained = deltaPosition;
+        if( transform.position.x + deltaPosition.x >= MaxRight)
+        {
+            deltaConstrained = new Vector3(0, deltaPosition.y, deltaPosition.z);
+        }
+        if ( transform.position.x - deltaPosition.x <= MaxLeft)
+        {
+            deltaConstrained = new Vector3(0, deltaPosition.y, deltaPosition.z);
+        }
+        if (transform.position.z + deltaPosition.z >= MaxUp)
+        {
+            deltaConstrained = new Vector3(deltaPosition.x, deltaPosition.y, 0);
+        }
+        if (transform.position.z - deltaPosition.z <= MaxDown)
+        {
+            deltaConstrained = new Vector3(deltaPosition.x, deltaPosition.y, 0);
+        }
+        if (transform.position.x < MaxLeft) transform.position = new Vector3(MaxLeft+0.1f, transform.position.y, transform.position.z);
+        if (transform.position.x > MaxRight) transform.position = new Vector3(MaxRight-0.1f, transform.position.y, transform.position.z);
+        if (transform.position.z < MaxDown) transform.position = new Vector3(transform.position.x, transform.position.y, MaxDown+0.5f);
+        if (transform.position.z > MaxUp) transform.position = new Vector3(transform.position.x, transform.position.y, MaxUp-0.1f);
+        transform.position += deltaConstrained;
     }
 
 
     void UpdateZoom()
     {
+        terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position) + 5;
         mouseScroll = Input.mouseScrollDelta;
         float zoomDelta = mouseScroll.y * zoomSpeed * Time.deltaTime;
         zoomLerp = Mathf.Clamp01(zoomLerp + zoomDelta);
@@ -92,7 +121,12 @@ public class CameraControl : MonoBehaviour {
         //przybliżanie
         var position = transform.position;
         position.y = Mathf.Lerp(cameraHeightMinMax.y, cameraHeightMinMax.x, zoomLerp) + groundHeight;
+        if(position.y < terrainHeight)
+        {
+            position.y = terrainHeight;
+        }
         transform.position = position;
+
 
         //rotowanie wokół X
         var rotation = transform.localEulerAngles;

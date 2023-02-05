@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    public static List<Soldier> SoldierList { get { return gameController.soldierList; } }
-    public static List<Dragon> DragonList { get { return gameController.dragonList; } }
     static GameController gameController;
 
     [SerializeField]
@@ -17,6 +15,8 @@ public class GameController : MonoBehaviour {
 
     List<Soldier> soldierList = new List<Soldier>();
     List<Dragon> dragonList = new List<Dragon>();
+    public static List<Soldier> SoldierList { get { return gameController.soldierList; } }
+    public static List<Dragon> DragonList { get { return gameController.dragonList; } }
     Text text;
 
     private void Awake()
@@ -48,13 +48,13 @@ public class GameController : MonoBehaviour {
     void Lose()
     {
         EndGame();
-        text.text = "Studenci wygrali...";
+        text.text = "Przegrana...";
     }
 
     void Win()
     {
                 EndGame();
-        text.text = "Studenci pokonani!";
+        text.text = "Zwycięstwo!";
     }
 
     void EndGame()
